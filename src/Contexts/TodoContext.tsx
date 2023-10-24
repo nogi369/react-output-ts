@@ -9,7 +9,7 @@ type Props = {
   children: ReactNode;
 };
 
-// {} = カスタムフックから取り出したオブジェクトがProviderに入ってくるから
+// {} = 空のオブジェクトを作成
 const TodoContext = createContext({});
 
 // children: https://choippo.com/react-component-children/
