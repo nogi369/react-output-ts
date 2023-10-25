@@ -4,7 +4,7 @@ import { NAVIGATION_PATH } from '../../../constants/navigation';
 import { EventType } from '../../../interfaces/Event';
 
 // paramsの型定義
-type Param = {
+type Params = {
   addTodo: (title: string, content: string) => void;
 };
 
@@ -21,18 +21,18 @@ type ActionsType = {
   handleCreateTodo: EventType['onSubmit'];
 };
 
-export const useTodoCreateTemplate = ({ addTodo }: Param) => {
+export const useTodoCreateTemplate = ({ addTodo }: Params) => {
   const navigate = useNavigate();
   // local state
   const [inputTitle, setInputTitle] = useState('');
   const [inputContent, setInputContent] = useState('');
 
   // タイトル変更処理
-  const handleChangeTitle = useCallback((e) => setInputTitle(e.target.value), []);
+  const handleChangeTitle: EventType['onChangeInput'] = useCallback((e) => setInputTitle(e.target.value), []);
   // コンテンツ変更処理
-  const handleChangeContent = useCallback((e) => setInputContent(e.target.value), []);
+  const handleChangeContent: EventType['onChangeTextArea'] = useCallback((e) => setInputContent(e.target.value), []);
   // 新規登録実行処理
-  const handleCreateTodo = useCallback(
+  const handleCreateTodo: EventType['onSubmit'] = useCallback(
     (e) => {
       e.preventDefault();
       if (inputTitle !== '' && inputContent !== '') {
@@ -40,7 +40,7 @@ export const useTodoCreateTemplate = ({ addTodo }: Param) => {
         navigate(NAVIGATION_PATH.TOP);
       }
     },
-    [addTodo, inputTitle, inputContent, navigate]
+    [addTodo, inputTitle, inputContent, navigate],
   );
 
   const states: StatesType = {
