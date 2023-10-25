@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import { TodoProvider } from './Contexts/TodoContext';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routes';
+import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <TodoProvider>
-      <h1>Hello World</h1>
+      <RouterProvider router={router}></RouterProvider>
     </TodoProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
