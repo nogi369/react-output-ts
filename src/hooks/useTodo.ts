@@ -13,7 +13,7 @@ export const useTodo = () => {
    * @param {string} title
    * @param {string} content
    */
-  const addTodo = useCallback(
+  const addTodo: (title: string, content: string) => void = useCallback(
     (title: string, content: string) => {
       const nextUniqueId = uniqueId + 1;
       const newTodo = [
@@ -37,7 +37,7 @@ export const useTodo = () => {
    * @param {string} content
    * @type {(function(*, *, *): void)|*}
    */
-  const updateTodo = useCallback(
+  const updateTodo: (id: number, title: string, content: string) => void = useCallback(
     (id: number, title: string, content: string) => {
       const updatedTodoList = originTodoList.map((todo) => {
         if (id === todo.id) {
@@ -61,7 +61,7 @@ export const useTodo = () => {
    * @param { string }targetTitle
    */
   // 削除処理
-  const deleteTodo = useCallback(
+  const deleteTodo: (targetId: number, targetTitle: string) => void = useCallback(
     (targetId: number, targetTitle: string) => {
       // 「OK」時の処理 ＋ 確認ダイアログの表示
       if (window.confirm(`「${targetTitle}」のtodoを削除しますか？`)) {
